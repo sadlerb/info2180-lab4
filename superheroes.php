@@ -1,5 +1,10 @@
 <?php
  header("Access-Control-Allow-Origin: *");
+
+ 
+
+
+
 $superheroes = [
   [
       "id" => 1,
@@ -62,6 +67,33 @@ $superheroes = [
       "biography" => "Notably powerful, Wanda Maximoff has fought both against and with the Avengers, attempting to hone her abilities and do what she believes is right to help the world.",
   ], 
 ];
+
+if (isset($_GET["name"])){
+    $input = filter_var($_GET["name"],FILTER_SANITIZE_STRING);
+    search($input,$superheroes);
+    
+ }
+function search($input,$superheroes){
+
+    if (!empty($input)){
+        for ($x = 0; $x < count($superheroes); $x++){
+            if(in_array($input,$superheroes[$x])){
+                foreach($superheroes[$x] as $item){
+                    echo ($item . "\n");
+                    
+                }
+            }else{
+                echo (" ");
+                
+            }
+        }
+    }
+
+}
+
+
+
+
 
 ?>
 
